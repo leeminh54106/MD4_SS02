@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Danh sach phong ban</h1>
+<a href="/department/add">Them moi phong ban</a>
+<form action="/employee/search" method="post">
+    <input type="search" placeholder="search by name or department" name="search">
+    <input type="submit" th:value="'Search'">
+</form>
+<table border="10" cellspacing="10" cellpadding="10">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="depart,loop:${departments}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${depart.name}"></td>
+        <td th:text="${depart.status}"></td>
+        <td><a th:href="|/department/edit/${depart.id}|">Edit</a></td>
+        <td><a th:href="|/department/delete/${depart.id}|">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
